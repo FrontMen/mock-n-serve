@@ -1,0 +1,43 @@
+{
+  "name": "mock-n-serve",
+  "version": "1.0.0",
+  "description": "Mockserver with integration for Cucumber setup",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/selenium-standalone install",
+    "mockserver": "node ./test/server/index",
+    "client": "node ./example/client.js",
+    "selenium": "./node_modules/.bin/selenium-standalone start",
+    "test": "./node_modules/.bin/cucumber.js test/features/normal.feature"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrontMen/mock-n-serve.git"
+  },
+  "keywords": [
+    "mock",
+    "server",
+    "test",
+    "ci",
+    "cucumber",
+    "tagging"
+  ],
+  "author": "Justus Romijn <justus@frontmen.nl>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FrontMen/mock-n-serve/issues"
+  },
+  "homepage": "https://github.com/FrontMen/mock-n-serve#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chai": "^4.1.2",
+    "colors": "^1.1.2",
+    "command-line-args": "^4.0.7",
+    "cors": "^2.8.4",
+    "cucumber": "^2.3.1",
+    "express": "^4.15.4",
+    "handlebars": "^4.0.10",
+    "selenium-standalone": "^6.9.0",
+    "selenium-webdriver": "^3.5.0"
+  }
+}

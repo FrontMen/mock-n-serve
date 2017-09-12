@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mockserver: configuration</title>
+    <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+<div class="container">
+    <div class="page-title">
+        <img src="/logo.svg" alt="Toon" height="40px"/>
+        <h1>API mockserver</h1>
+    </div>
+    <table class="mock-table">
+        <thead>
+        <tr>
+            <th>ENDPOINT (regular expr.)</th>
+            <th>METHOD</th>
+            <th>RESPONSES</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each mocks}}
+            <tr>
+                <td>{{this.path}}</td>
+                <td class="method">{{this.method}}</td>
+                <td>
+                    {{#if this.hasParser}}
+                        Has custom parser function
+                    {{else}}
+                        <label>Respond with:
+                            <select onchange='setResponse(this,"{{this.path}}","{{this.method}}")'>
+                                <option>default</option>
+                                {{#each this.mock.scenarios}}
+                                    <option {{#if this.selected}}selected="selected"{{/if}} id="{{this.title}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </label>
+                    {{/if}}
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    <h2>How does it work?</h2>
+    <p>
+        The mockserver will respond to the given endpoints, it matches based on regular expressions. The list is based on the
+        files inside the <code>mocks</code> folder. You can select how the mockserver should respond, by selecting a specific
+        response for a given endpoint. By default, it takes the first  scenario (normal by default)
+    </p>
+    <p>
+        You can also supply a parser function with a mock, this will then be used to generate a response.
+        This is useful if the mocked endpoint needs some more sophisticated behaviour.
+    </p>
+</div>
+<script type="text/javascript">
+    function setResponse(el, path, method){
+        let response = el.selectedOptions[0].value;
+        fetch("http://localhost:8080/mocks/select", {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "post",
+            body: JSON.stringify({
+                method: method,
+                path: path,
+                scenario: response
+            })
+        });
+//        let request = new XMLHttpRequest();
+//        request.open("put", "http://localhost:8080/mocks/select", true);
+//        request.setRequestHeader("Content-Type", "application/json");
+//        request.send(JSON.stringify({method: mock.method, path: mock.path, scenario: mock.response }));
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EXAMPLE</title>
+    <style>
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            min-height: 150px;
+        }
+        .endpoints {
+            flex-grow: 1;
+        }
+        .response-container {
+            flex-grow: 1;
+        }
+        #_giphy_tv {
+            width: 60%;
+            margin-left: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <ul class="endpoints">
+            <li>
+                <a href="#"
+                   id="get-foo-bar-1234"
+                   data-method="GET"
+                   data-url="http://localhost:8080/foo/bar/1234">GET "foo/bar/1234"</a>
+            </li>
+        </ul>
+        <div class="response-container" id="response">
+        </div>
+    </div>
+    <hr />
+    <div id="_giphy_tv"></div>
+    <script>
+        var _giphy_tv_tag="random";
+        var g = document.createElement('script'); g.type = 'text/javascript'; g.async = true;
+        g.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'giphy.com/static/js/widgets/tv.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(g, s);
+    </script>
+
+
+<script>
+    document.querySelector(".controls").addEventListener("click", onControlClick);
+
+    function onControlClick(e){
+        const target = e.srcElement;
+        if (target.dataset && target.dataset.url){
+            fetch(target.dataset.url, {
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    method: target.dataset.method || "GET",
+                })
+                .then(parseResponse)
+                .then(printResult);
+        }
+    }
+
+    function parseResponse(res){
+        if (res.status !== 500){
+            return res.json();
+        } else {
+            return 500;
+        }
+    }
+    function printResult(result){
+        document.querySelector("#response").textContent = JSON.stringify(result);
+    }
+</script>
+</body>
+</html>
