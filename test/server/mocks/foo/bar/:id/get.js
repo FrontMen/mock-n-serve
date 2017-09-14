@@ -32,6 +32,17 @@ module.exports = {
                     message: "You are so dumb..."
                 }
             }]
+        },
+        {
+            title: "dynamic",
+            parser: function(params){
+                return {
+                    status: 200,
+                    data: {
+                        message: `The given ID is ${params.id}`
+                    }
+                }
+            }
         }
     ]
 };

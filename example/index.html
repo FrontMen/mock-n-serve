@@ -7,12 +7,34 @@
         .controls {
             display: flex;
             justify-content: space-between;
-            min-height: 150px;
+            min-height: 200px;
         }
         .endpoints {
-            flex-grow: 1;
+            padding-right: 30px;
+        }
+        .endpoints li {
+            display: block;
+            margin: 0 0 5px;
+        }
+        .endpoints li a {
+            display: inline-block;
+            background-color: cornflowerblue;
+            color: white;
+            font-family: "Helvetica", "Arial", sans-serif;
+            text-decoration: none;
+            padding: 3px;
+            font-size: 15px;
+            line-height: 20px;
+            border: 2px solid cornflowerblue;
         }
         .response-container {
+            background: black;
+            padding: 15px;
+            color: cornsilk;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 28px;
+            font-family: monospace;
             flex-grow: 1;
         }
         #_giphy_tv {
@@ -30,8 +52,21 @@
                    data-method="GET"
                    data-url="http://localhost:8080/foo/bar/1234">GET "foo/bar/1234"</a>
             </li>
+            <li>
+                <a href="#"
+                   id="get-foo-bar-9999"
+                   data-method="GET"
+                   data-url="http://localhost:8080/foo/bar/9999">GET "foo/bar/9999"</a>
+            </li>
+            <li>
+                <a href="#"
+                   id="justice"
+                   data-method="POST"
+                   data-url="http://localhost:8080/justice">POST "justice"</a>
+            </li>
         </ul>
         <div class="response-container" id="response">
+            <pre></pre>
         </div>
     </div>
     <hr />
@@ -69,7 +104,7 @@
         }
     }
     function printResult(result){
-        document.querySelector("#response").textContent = JSON.stringify(result);
+        document.querySelector("#response pre").textContent = JSON.stringify(result);
     }
 </script>
 </body>

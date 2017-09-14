@@ -80,12 +80,12 @@ function loadMocks(pointer, depth){
                     let currentScenario = mock.scenarios
                         .find((scenario) => scenario.title === selected);
 
-                        let response = currentScenario.responses[callCount];
+                        let response = (currentScenario.responses && currentScenario.responses[callCount]) || currentScenario.parser(req.params);
 
-                    res.status(response.status).send(response.data || response.parse && response.parse(req.params));
+                    res.status(response.status).send(JSON.stringify(response.data));
 
 
-                    if (currentScenario.responses[callCount + 1]){
+                    if (currentScenario.responses && currentScenario.responses[callCount + 1]){
                         callCount++;
                     } else {
                         callCount = 0;
