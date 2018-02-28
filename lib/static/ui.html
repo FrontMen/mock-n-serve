@@ -10,9 +10,18 @@
     <div class="page-title">
         <h1>Mock-n-Serve</h1>
     </div>
-    <div class="presets" id="presets"></div>
+    <div class="presets">
+        <div class="presets__active">
+            Preset: <span id="presets"></span>
+            <span id="create-preset" class="u-hidden">
+                <input id="new-preset" type="text"/>
+                <button class="action" onclick="createPreset()">Create</button>
+            </span>
+            <button id="save-preset" class="action" onclick="savePreset()">Save</button>
+        </div>
+    </div>
     <div class="mocks">
-        <table>
+        <table class="mocks__table">
             <thead>
             <tr>
                 <th>URL</th>
@@ -27,18 +36,6 @@
                     <td colspan="4">No mocks defined!</td>
                 </tr>
             </tbody>
-            <tfoot>
-                <tr><td colspan="4"></td>
-                    <td>
-                        <button onclick="savePreset()">Save to current preset</button>
-                    </td>
-                </tr>
-                <tr><td colspan="4" style="text-align:right"><input id="new-preset" type="text"/></td>
-                    <td>
-                        <button onclick="createPreset()">Save as new preset</button>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </div>
 </div>
@@ -46,12 +43,12 @@
 <script src="scripts.js"></script>
 <script type="text/template" id="mock-template">
     <tr id="<%= id %>">
-        <td><%= url %></td>
-        <td><%= method %></td>
-        <td><%= callCount %></td>
-        <td><%= nextResponse %></td>
+        <td><code><%= url %></code></td>
+        <td><code><%= method.toUpperCase() %></code></td>
+        <td class="u-number"><%= callCount %></td>
+        <td class="u-number"><%= nextResponse %></td>
         <td>
-            <select onchange="mockChange('<%= url %>', '<%= method %>', this.value)">
+            <select class="mocks__scenario-selector" onchange="mockChange('<%= url %>', '<%= method %>', this.value)">
                 <% _.each(mock.scenarios, (scenario) => { %>
                     <option value="<%= scenario.title %>"
                         <% if (scenario.title === selectedScenario) { %>
@@ -65,7 +62,8 @@
     </tr>
 </script>
 <script type="text/template" id="presets-template">
-    Active preset: <select onchange="presetChange(this.value)">
+    <select id="preset-selection" onchange="presetChange(this.value)">
+        <option value="_new">create new...</option>
         <% _.each(presets, (preset) => { %>
             <option value="<%= preset.title %>"
             <% if (preset.selected) { %>

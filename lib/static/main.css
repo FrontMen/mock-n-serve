@@ -1,11 +1,50 @@
+:root {
+    --color-primary: #ff5500;
+    --color-support: #2663A8;
+    --color-main-1: #303030;
+    --color-main-2: #787878;
+    --color-invert-1: #f0f0f0;
+    --color-invert-2: #e0e0e0;
+    --text-line-normal: 24px;
+    --text-font-normal: 16px;
+    --text-font-type: 'Georgia', 'serif';
+    --unit-small: 4px;
+    --unit-normal: 8px;
+}
+
 html, body {
     margin: 0;
     padding: 0;
+    line-height: var(--text-line-normal);
+    font-size: var(--text-font-normal);
+    font-family: var(--text-font-type);
+}
+
+code {
+    background-color: var(--color-invert-2);
+    color: var(--color-main-1);
+    padding: 0 var(--unit-normal);
+    border-radius: var(--unit-normal);
+}
+input[type="text"] {
+    line-height: var(--text-line-normal);
+    padding: 0;
+    border: 1px solid var(--color-main-1);
+}
+table {
+    border-collapse: collapse;
+}
+table tr td {
+    border: 1px solid var(--color-main-2);
+    padding: 4px;
+}
+table tbody tr:nth-child(even) td {
+    background-color: var(--color-invert-1);
 }
 
 .page-title {
-    padding: 20px;
-    background-color: #FFF0CA;
+    padding: var(--unit-normal);
+    background-color: var(--color-invert-1);
 }
 .page-title h1 {
     padding: 0;
@@ -14,13 +53,42 @@ html, body {
     font-family: 'Courier New', 'Courier', serif;
     line-height: 1.3em;
     font-size: 48px;
-    color: #C51A1A;
-    text-shadow: 1px 1px 2px #950000;
+    color: var(--color-primary);
+    text-shadow: 1px 1px 2px var(--color-support);
 }
 
+/* BEM STUFF */
+.mocks, .presets {
+    padding: var(--unit-normal)
+}
+
+.mocks__table {
+
+}
+
+.mocks__scenario-selector {
+    display: block;
+    width: 100%;
+}
+
+.action {
+    color: var(--color-invert-1);
+    display: inline-block;
+    line-height: var(--text-line-normal);
+    vertical-align: middle;
+    padding: 0 var(--unit-normal);
+    background-color: var(--color-support);
+    border: 1px solid var(--color-support);
+    border-radius: var(--unit-small);
+}
+
+/* UTILITY CLASSES */
 .u-invisible {
     visibility: hidden;
 }
 .u-hidden {
     display: none;
+}
+.u-number {
+    text-align: right;
 }

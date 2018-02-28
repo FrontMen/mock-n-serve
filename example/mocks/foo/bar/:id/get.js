@@ -26,9 +26,12 @@ module.exports = {
     }]
   }, {
     title: 'dynamic',
-    parser: (req) => {
+    parser: (req, res, next) => {
       console.log('PARSING')
-      return {status: 200, data: {foo: 'bar'}}
+      console.log(req.params)
+      console.log(req.query)
+      res.status(200).send({foo: 'bar'})
+      return next()
     }
   }]
 }
