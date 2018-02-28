@@ -1,0 +1,26 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.page-title {
+    padding: 20px;
+    background-color: #FFF0CA;
+}
+.page-title h1 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Courier New', 'Courier', serif;
+    line-height: 1.3em;
+    font-size: 48px;
+    color: #C51A1A;
+    text-shadow: 1px 1px 2px #950000;
+}
+
+.u-invisible {
+    visibility: hidden;
+}
+.u-hidden {
+    display: none;
+}

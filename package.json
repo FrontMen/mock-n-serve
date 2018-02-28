@@ -1,0 +1,45 @@
+{
+  "name": "mock-n-serve",
+  "version": "1.0.0",
+  "description": "Serve mockfiles, setup scenarios and integrate them with your E2E tests.",
+  "main": "lib/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrontMen/mock-n-serve.git"
+  },
+  "keywords": [
+    "mock",
+    "server",
+    "scenario",
+    "testing"
+  ],
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "bin": "./bin/mock-n-serve.js",
+  "author": "Justus Romijn <justus@frontmen.nl>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrontMen/mock-n-serve/issues"
+  },
+  "homepage": "https://github.com/FrontMen/mock-n-serve#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "handlebars": "^4.0.11",
+    "underscore": "^1.8.3",
+    "ws": "^4.1.0"
+  }
+}

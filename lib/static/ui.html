@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mockserver UI</title>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="page-title">
+        <h1>Mock-n-Serve</h1>
+    </div>
+    <div class="presets" id="presets"></div>
+    <div class="mocks">
+        <table>
+            <thead>
+            <tr>
+                <th>URL</th>
+                <th>Method</th>
+                <th>Calls</th>
+                <th>Next response</th>
+                <th>Scenario</th>
+            </tr>
+            </thead>
+            <tbody id="mocks">
+                <tr>
+                    <td colspan="4">No mocks defined!</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="4"></td>
+                    <td>
+                        <button onclick="savePreset()">Save to current preset</button>
+                    </td>
+                </tr>
+                <tr><td colspan="4" style="text-align:right"><input id="new-preset" type="text"/></td>
+                    <td>
+                        <button onclick="createPreset()">Save as new preset</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="scripts.js"></script>
+<script type="text/template" id="mock-template">
+    <tr id="<%= id %>">
+        <td><%= url %></td>
+        <td><%= method %></td>
+        <td><%= callCount %></td>
+        <td><%= nextResponse %></td>
+        <td>
+            <select onchange="mockChange('<%= url %>', '<%= method %>', this.value)">
+                <% _.each(mock.scenarios, (scenario) => { %>
+                    <option value="<%= scenario.title %>"
+                        <% if (scenario.title === selectedScenario) { %>
+                        selected="selected"
+                        <% } %>
+                    >
+                        <%= scenario.title %></option>
+                <% }); %>
+            </select>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="presets-template">
+    Active preset: <select onchange="presetChange(this.value)">
+        <% _.each(presets, (preset) => { %>
+            <option value="<%= preset.title %>"
+            <% if (preset.selected) { %>
+            selected="selected"
+            <% } %>
+            >
+            <%= preset.title %></option>
+        <% }); %>
+    </select>
+</script>
+</body>
+</html>
