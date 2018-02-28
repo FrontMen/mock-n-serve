@@ -19,7 +19,7 @@ module.exports = {
         greeting: 'hello world, 2'
       }
     }]
-  },{
+  }, {
     title: 'server down',
     responses: [{
       status: 500
@@ -28,7 +28,7 @@ module.exports = {
     title: 'dynamic',
     parser: (req) => {
       console.log('PARSING')
-      return { status: 200, data: { foo: 'bar' } }
+      return {status: 200, data: {foo: 'bar'}}
     }
   }]
 }
