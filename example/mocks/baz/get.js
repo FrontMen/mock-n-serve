@@ -12,5 +12,14 @@ module.exports = {
         greeting: 'hello world'
       }
     }]
+  },
+  {
+    title: 'yolo',
+    responses: [{
+      status: 200,
+      data: {
+        yolo: 'true dat'
+      }
+    }]
   }]
 }
