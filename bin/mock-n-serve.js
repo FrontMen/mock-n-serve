@@ -8,7 +8,10 @@ const cwd = process.cwd()
 let defaults = {
   mocksFolder: path.join(cwd, 'mocks'),
   presetsFolder: path.join(cwd, 'presets'),
-  port: 9090
+  port: 9090,
+  wsProtocol: 'ws',
+  wsPort: 9091,
+  wsHostName: 'localhost'
 }
 let config = {}
 let args = process.argv.slice(2)
@@ -36,6 +39,16 @@ args.filter((item, index) => index % 2 === 0).forEach((arg, i) => {
     case '-p':
     case '--port':
       config.port = value
+      break
+    case '--websocketprotocol':
+      config.wsProtocol = value
+      break
+    case '--websocketport':
+      config.wsPort = value
+      break
+    case '-wshn':
+    case '--websockethostname':
+      config.wsHostName = value
       break
   }
 })
