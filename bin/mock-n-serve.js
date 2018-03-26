@@ -43,6 +43,9 @@ args.filter((item, index) => index % 2 === 0).forEach((arg, i) => {
     case '--websocketprotocol':
       config.wsProtocol = value
       break
+    case '--websocketpublicport':
+      config.wsPublicPort = value
+      break
     case '--websocketport':
       config.wsPort = value
       break
